@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
@@ -25,17 +26,15 @@ Route::post('/sessions', [SessionController::class, 'store'])->middleware('guest
 
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-// we receive the category's slug(represent the category) and pass all it's posts to the posts viewe
-// Route::get('categories/{category:slug}', function (Category $category) {
-//     return view('posts',[
-//         'posts' => $category->posts,
-//         'current_category' => $category,
-//         'categories' => Category::all()
-//     ]);
-// });
 
-// Route::get('authors/{author:user_name}', function (User $author) {
-//     return view('posts.index',[
-//         'posts' => $author->posts,
-//     ]);
-// });
+// Admin
+
+Route::middleware('can:admin')->group(function(){
+    Route::resource('admin/posts', AdminPostController::class)->except('show');
+    // Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+    // Route::post('admin/posts', [AdminPostController::class, 'store']);
+    // Route::get('admin/posts', [AdminPostController::class, 'index']);
+    // Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit']);
+    // Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
+    // Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
+});

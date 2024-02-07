@@ -16,12 +16,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       User::factory(5)->create();
+    //    User::factory(5)->create();
 
-       Post::factory(50)->create();
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
+        Category::create([
+            'name' => 'Family',
+            'slug' => 'family'
+        ]);
+        Category::create([
+            'name' => 'Politics',
+            'slug' => 'politics'
+        ]);
+        Category::create([
+            'name' => 'Business',
+            'slug' => 'business'
+        ]);
+        Category::create([
+            'name' => 'Work',
+            'slug' => 'work'
+        ]);
+        Category::create([
+            'name' => 'Hobby',
+            'slug' => 'hobby'
+        ]);
+        Category::create([
+            'name' => 'Romantic',
+            'slug' => 'Romantic'
+        ]);
+
+        Category::create([
+            'name' => 'Friendship',
+            'slug' => 'friendship'
+        ]);
+        Category::create([
+            'name' => 'Nature',
+            'slug' => 'nature'
+        ]);
+
 
        User::factory()->create([
-        'email' => 'ali@gmail.com',
+        'name' => 'Murtaza',
+        'user_name' => 'murtaza',
+        'email' => 'murtaza@gmail.com',
         'password' => 'password'
        ]);
     }

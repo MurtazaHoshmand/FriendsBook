@@ -5,14 +5,14 @@
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+                    <img src="/storage/{{ $post->thumbnail }}" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
                         Published <time>{{$post->created_at->diffForHumans()}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
+                        <img src="/images/person.jpg" width="60" height="60" class="rounded-xl" alt="hoshmand avatar">
                         <div class="ml-3 text-left">
                             <h5 class="font-bold">
                                 <a href="?author={{$post->author->user_name}}">{{$post->author->name}}</a>
@@ -39,8 +39,8 @@
                         </a>
 
                         <div class="space-x-2">
-                            <a href="/categories/{{$post->category->slug}}"
-                                class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
+                            <a href="?categories={{$post->category->slug}}"
+                                class="px-3 py-1 border border-blue-300 rounded-full text-green-300 text-xs uppercase font-semibold"
                                 style="font-size: 10px">{{$post->category->name}}</a>
                         </div>
                     </div>
@@ -61,15 +61,14 @@
                         <form action="/posts/{{$post->slug}}/comments" method="POST">
                             @csrf
                             <header class="flex items-center">
-                                <img src="https://i.pravatar.cc/100?u={{auth()->id()}}" width="60" class="rounded-xl">
+                                <img src="/images/person.jpg" width="60" height="60" class="rounded-xl">
 
                                 <h2 class="ml-4">Want to participate?</h2>
                             </header>
 
                             <div class="mt-6">
-                                <textarea name="body" rows="5" class="w-full text-sm focus:ouline-none focus:ring"
-                                placeholder="Quick, think something" required>
-                                </textarea>
+                                <textarea name="body" rows="5" class="w-full p-2 text-sm focus:outline-none focus:ring"
+                                     placeholder="Quick, think something" required></textarea>
                                 @error('body')
                                     <span class="text-xs text-red-500">{{$message}}</span>
                                 @enderror
